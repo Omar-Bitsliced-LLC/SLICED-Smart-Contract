@@ -8,10 +8,11 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 contract Sliced is ERC20Burnable,Ownable,Pausable {
 
 	uint public duration = 30 days; 
-
+	
+	//Multi-sig wallets
 	address public community = 0x24742f95e0707714e9C9cEb909f59089709fCec8; 
 	address public reward = 0x75920cfEccF81295babf2d20a0540b7479fFE3DD;
-  address public marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
+        address public marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
 	address public dev = 0x0f79cFE940D2CCEfa2D8fd94Baa41E9B5e857eED;
 	address public team = 0x61d14eb8b42E44402da1B02e1399bD9c01af4d59;
 	address public legal = 0x96f7c22178deDFDFc1Ea421E2B105B199AbE6419;
