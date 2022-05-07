@@ -7,17 +7,16 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 
 contract Sliced is ERC20Burnable,Ownable,Pausable {
 
-	uint public duration = 30 days; 
-	
-	//Multi-sig wallets
-	address public community = 0x24742f95e0707714e9C9cEb909f59089709fCec8; 
-	address public reward = 0x75920cfEccF81295babf2d20a0540b7479fFE3DD;
-        address public marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
-	address public dev = 0x0f79cFE940D2CCEfa2D8fd94Baa41E9B5e857eED;
-	address public team = 0x61d14eb8b42E44402da1B02e1399bD9c01af4d59;
-	address public legal = 0x96f7c22178deDFDFc1Ea421E2B105B199AbE6419;
-	address public launchpad = 0xabade3a7c3a790A4Db3C106568f545aDE17A0CaC;
-	
+	uint constant duration = 30 days; 
+
+	address constant community = 0x24742f95e0707714e9C9cEb909f59089709fCec8; 
+	address constant reward = 0x75920cfEccF81295babf2d20a0540b7479fFE3DD;
+  address constant marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
+	address constant dev = 0x0f79cFE940D2CCEfa2D8fd94Baa41E9B5e857eED;
+	address constant team = 0x61d14eb8b42E44402da1B02e1399bD9c01af4d59;
+	address constant legal = 0x96f7c22178deDFDFc1Ea421E2B105B199AbE6419;
+	address constant launchpad = 0xabade3a7c3a790A4Db3C106568f545aDE17A0CaC;
+
     struct Account {
 		string name;
 		address wallet;
@@ -67,7 +66,7 @@ contract Sliced is ERC20Burnable,Ownable,Pausable {
 	  accounts.push(Account('launchpad',launchpad,5,0,0));
 
     }
-	function sendTokens() public onlyAdmin{
+	function sendTokens() external onlyAdmin{
 		require(block.timestamp>=lastTransferDate+duration,"SLICED::You already transfered tokens this month");
 		for (uint i=0; i< 7; i++) {
 				if(accounts[i].totalAmountclaimed < totalSupply()*accounts[i].balancePrc/100){
@@ -78,12 +77,12 @@ contract Sliced is ERC20Burnable,Ownable,Pausable {
 		}
 		lastTransferDate += duration;
 	}
-    function updateUserState(address _user,bool _state) public onlyAdmin {
+    function updateUserState(address _user,bool _state) external onlyAdmin {
 		require(_user!=address(0),"SLICED::Address NULL");
         blacklistedAddresses[_user] = _state;
     }
     
-	function updateAdmin(address _user,bool _state) public onlyOwner {
+	function updateAdmin(address _user,bool _state) external onlyOwner {
 		require(_user!=address(0),"SLICED::Address NULL");
         admins[_user] = _state;
     }    
@@ -93,11 +92,11 @@ contract Sliced is ERC20Burnable,Ownable,Pausable {
         super._beforeTokenTransfer(_from, _to, _amount);
     }
 
-	function pause() public  onlyOwner {
+	function pause() external  onlyOwner {
         _pause();
     }
 
-	function unpause() public  onlyOwner {
+	function unpause() external  onlyOwner {
         _unpause();
     }
 }
