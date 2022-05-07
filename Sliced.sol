@@ -11,7 +11,7 @@ contract Sliced is ERC20Burnable,Ownable,Pausable {
 
 	address constant community = 0x24742f95e0707714e9C9cEb909f59089709fCec8; 
 	address constant reward = 0x75920cfEccF81295babf2d20a0540b7479fFE3DD;
-  address constant marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
+  	address constant marketing = 0x4d38527924f9E5d0CE071fB56B4863540aDD6113;
 	address constant dev = 0x0f79cFE940D2CCEfa2D8fd94Baa41E9B5e857eED;
 	address constant team = 0x61d14eb8b42E44402da1B02e1399bD9c01af4d59;
 	address constant legal = 0x96f7c22178deDFDFc1Ea421E2B105B199AbE6419;
